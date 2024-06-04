@@ -25,6 +25,8 @@ public class WithdrawalRequest {
   @JsonProperty("transaction_id")
   private String transactionId; // Transaction id (bitcoin withdrawals only).
 
+  private Long txid; // Bitstamp-specific transaction ID
+
   public WithdrawalRequest(@JsonProperty("datetime") String datetime) {
     super();
     this.datetime = BitstampUtils.parseDate(datetime);
@@ -67,6 +69,10 @@ public class WithdrawalRequest {
     return transactionId;
   }
 
+  public Long getTxid() {
+    return txid;
+  }
+
   public Currency getCurrency() {
     return currency;
   }
@@ -91,6 +97,8 @@ public class WithdrawalRequest {
         + address
         + ", transactionId="
         + transactionId
+        + ", txid="
+        + txid
         + "]";
   }
 
